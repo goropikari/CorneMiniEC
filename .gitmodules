@@ -1,0 +1,3 @@
+[submodule "kmk_firmware"]
+	path = kmk_firmware
+	url = https://github.com/KMKfw/kmk_firmware
