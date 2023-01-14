@@ -1,6 +1,4 @@
-# Scanner logic is based on https://github.com/sekigon-gonnoc/ec-switch-scan-module.
-import time
-
+# Scanner logic is based on https://github.com/sekigon-gonnoc/ec-switch-scan-module
 import digitalio
 from analogio import AnalogIn
 from keypad import Event as KeyEvent

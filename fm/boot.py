@@ -14,5 +14,6 @@ reset.pull = digitalio.Pull.UP
 if reset.value:
     storage.disable_usb_drive()
 
+# debug するときは下2行をコメントアウトする
 usb_cdc.disable()
 usb_hid.enable(boot_device=1)
