@@ -18,8 +18,8 @@
 | m5 2mm スペーサー                               |   10 | https://www.hirosugi-net.co.jp/shop/g/g3318/                                                                                                                                                                                                          |
 | m2 4mm ねじ                                     |   28 | https://www.hirosugi-net.co.jp/shop/g/g36905/                                                                                                                                                                                                         |
 | ゴム足                                          |    8 | https://www.amazon.co.jp/dp/B08WYNYLSK                                                                                                                                                                                                                |
-| スキャンモジュール                              |    2 | https://nogikes.booth.pm/items/2710697                                                                                                                                                                                                                |
-| Seeed Studio XIAO RP2040                        |    2 | https://akizukidenshi.com/catalog/g/gM-17044/ <br>https://talpkeyboard.net/items/63534f58f5197322fceb6487 <br>https://www.switch-science.com/products/7634?gclid=Cj0KCQiAn4SeBhCwARIsANeF9DKmqjOd5mDyTjdRjlI8Az9yD6eNxgfJHfWghG-0v4dwvCrwWmRG_JkaAuxmEALw_wcB |
+| 静電容量スイッチスキャン用モジュール            |    2 | https://nogikes.booth.pm/items/2710697                                                                                                                                                                                                                |
+| Seeed Studio XIAO RP2040                        |    2 | - https://akizukidenshi.com/catalog/g/gM-17044/ <br>- https://talpkeyboard.net/items/63534f58f5197322fceb6487 <br>- https://www.switch-science.com/products/7634?gclid=Cj0KCQiAn4SeBhCwARIsANeF9DKmqjOd5mDyTjdRjlI8Az9yD6eNxgfJHfWghG-0v4dwvCrwWmRG_JkaAuxmEALw_wcB |
 | NEW NIZ EC SWITCH                               |   36キー分 | https://shop.yushakobo.jp/products/5224?_pos=1&_sid=e5c84c034&_ss=r                                                                                                                                                                                   |
 | コニカルスプリング                              |   36キー分 | https://shop.yushakobo.jp/products/4679?_pos=2&_sid=e5c84c034&_ss=r                                                                                                                                                                                   |
 | ラバーシート                                    |    36キー分 | https://shop.yushakobo.jp/products/a0500er-01-1?_pos=1&_sid=2c4c76839&_ss=r                                                                                                                                                                           |
@@ -40,7 +40,7 @@
 ![ソケット・ジャック仮置き写真](img/socket.png)
 
 
-マイコン、静電容量スキャンモジュールを下記の写真のような向きでハンダ付けします
+マイコン、静電容量スキャンモジュールにピンヘッダーをハンダ付けし、下記の写真のような向きで配置します。
 
 
 ![マイコン](img/micro_computer.png)
@@ -99,7 +99,7 @@ bootloader mode で起動し、ダウンロードした `uf2` ファイルをコ
 - https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython#bootloader-mode-3105160
 
 コピーし終わると `CIRCUITPY` というドライブがマウントされます。
-後のためにドライブ名を左手用のマイコンは `NYQUISTL`, 右手用は `NYQUISTR` にリネームしておいてください。
+後のためにドライブ名を左手用のマイコンは `NYQUISTL`, 右手用は `NYQUISTR` にリネームしておいてください。<br>
 https://learn.adafruit.com/welcome-to-circuitpython/renaming-circuitpy
 
 
@@ -132,9 +132,9 @@ git clone --recursive https://github.com/goropikari/CorneMiniEC
 ### 閾値調整
 
 
-`code.py` で `debug=False` になっている部分を `True` に、`boot.py` の「debug するときは下2行をコメントアウトする」と書かれている2行をコメントアウトし、USB ケーブルを抜き差しすると各スイッチの電圧を出力されるようになります。
+`code.py` で `debug=False` になっている部分を `True` に、`boot.py` の「debug するときは下2行をコメントアウトする」と書かれている2行をコメントアウトし、USB ケーブルを抜き差しすると各スイッチの電圧が出力されるようになります。
 
-出力は picocom や [Mu editor](https://codewith.mu/) を使うと見ることが出来ます。下図は Mu editor を使って出力値をプロットしているところです。
+出力は [picocom](https://wiki.archlinux.jp/index.php/%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB#picocom) や [Mu editor](https://codewith.mu/) を使うと見ることが出来ます。下図は Mu editor を使って出力値をプロットしているところです。
 ![閾値](./img/threshold.png)
 
 この出力値を参考に閾値を調節してください。初期値は下記のように設定されています。
