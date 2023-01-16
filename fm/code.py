@@ -9,11 +9,20 @@ import scanner
 
 keyboard = KMKKeyboard()
 
+S1 = 0
+S2 = 1
+S3 = 2
+S4 = 3
+S5 = 4
+S6 = 5
+S7 = 6
+S8 = 7
+
 row_pins = (board.D4, board.D5, board.D6)
 adc_port = board.A0
 discharge_port = board.D1
 mux_sels = (board.D10, board.D9, board.D8)
-col_channels=[4, 5, 3, 0, 1, 2]
+col_channels=[S5, S6, S4, S1, S2, S3]
 
 tap_time = 125
 
