@@ -16,7 +16,8 @@
 | m2 8.5mm スペーサー                             |   10 | https://www.hirosugi-net.co.jp/shop/g/g2395/                                                                                                                                                                                                          |
 | m2 10mm スペーサー                              |    4 | https://www.hirosugi-net.co.jp/shop/g/g2398/                                                                                                                                                                                                          |
 | m5 2mm スペーサー                               |   10 | https://www.hirosugi-net.co.jp/shop/g/g3318/                                                                                                                                                                                                          |
-| m2 4mm ねじ                                     |   28 | https://www.hirosugi-net.co.jp/shop/g/g36905/                                                                                                                                                                                                         |
+| m2 4mm 低頭ねじ                                     |   10 | https://wilco.jp/products/F/FX-E.html#page3                                                                                                                                                                                                         |
+| m2 4mm ねじ                                     |   18 | https://www.hirosugi-net.co.jp/shop/g/g36905/                                                                                                                                                                                                         |
 | ゴム足                                          |    8 | https://www.amazon.co.jp/dp/B08WYNYLSK                                                                                                                                                                                                                |
 | 静電容量スイッチスキャン用モジュール            |    2 | https://nogikes.booth.pm/items/2710697                                                                                                                                                                                                                |
 | Seeed Studio XIAO RP2040                        |    2 | - https://akizukidenshi.com/catalog/g/gM-17044/ <br>- https://talpkeyboard.net/items/63534f58f5197322fceb6487 <br>- https://www.switch-science.com/products/7634?gclid=Cj0KCQiAn4SeBhCwARIsANeF9DKmqjOd5mDyTjdRjlI8Az9yD6eNxgfJHfWghG-0v4dwvCrwWmRG_JkaAuxmEALw_wcB |
@@ -48,7 +49,7 @@
 
 ### スイッチ
 
-トッププレートに M2 8.5 mm スペーサーをネジで固定します。
+トッププレートに M2 8.5 mm スペーサーを低頭ネジで固定します。低頭ネジでない普通のネジで止めるとキーを押したときにネジの頭とキーキャップが衝突します。
 
 ![スペーサー](img/spacer.png)
 
