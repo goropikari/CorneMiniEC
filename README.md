@@ -110,7 +110,7 @@ https://learn.adafruit.com/welcome-to-circuitpython/renaming-circuitpy
 git clone --recursive https://github.com/goropikari/CorneMiniEC
 ```
 
-`kmk_firmware` 配下の kmk ディレクトリをドライブ直下に配置、`fm` ディレクトリ配下の Python プログラムをドライブ直下に配置します。
+`kmk_firmware` 配下の kmk ディレクトリをドライブ直下に配置、`firmware` ディレクトリ配下の Python プログラムをドライブ直下に配置します。
 
 全てのファイルを配置したあとは以下のようなディレクトリ構成になります。
 
