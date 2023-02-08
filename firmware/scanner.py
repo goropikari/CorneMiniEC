@@ -86,8 +86,9 @@ class ECMatrixScanner(Scanner):
         self.key %= self.key_count
         self.niter += 1
         self.niter %= 50
-        if self.debug and self.key == 0 and self.niter == 0:
-            print('(' + ",".join(map(lambda i: str(i), self.vals)) + ')')
+        if self.debug:
+            if self.key == 0 and self.niter == 0:
+                print('(' + ",".join(map(lambda i: str(i), self.vals)) + ')')
             return None
 
         if any_changed:

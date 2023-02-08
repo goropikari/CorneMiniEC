@@ -6,6 +6,7 @@ from kmk.modules.layers import Layers
 from kmk.modules.modtap import ModTap
 from kmk.modules.holdtap import HoldTapRepeat
 import scanner
+import os
 
 keyboard = KMKKeyboard()
 
@@ -107,9 +108,9 @@ keyboard.matrix = scanner.ECMatrixScanner(
     mux_sels=mux_sels,
     adc_port=adc_port,
     discharge_port=discharge_port,
-    low_threshold=0.7,
-    high_threshold=0.8,
-    debug=False,
+    low_threshold=0.6,
+    high_threshold=0.7,
+    debug=os.getenv('DEBUG', 0) == 1,
 )
 
 if __name__ == '__main__':
