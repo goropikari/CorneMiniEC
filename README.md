@@ -98,7 +98,7 @@
 ## Firmware
 
 XIAO RP2040 用の CircuitPython を[ダウンロード](https://circuitpython.org/board/seeeduino_xiao_rp2040/)します。
-(動作確認は [version 7.3.3](https://adafruit-circuit-python.s3.amazonaws.com/bin/seeeduino_xiao_rp2040/en_US/adafruit-circuitpython-seeeduino_xiao_rp2040-en_US-7.3.3.uf2) で行いました。)
+(動作確認は [version 8.0.0](https://adafruit-circuit-python.s3.amazonaws.com/bin/seeeduino_xiao_rp2040/en_US/adafruit-circuitpython-seeeduino_xiao_rp2040-en_US-8.0.0.uf2) で行いました。)
 
 bootloader mode で起動し、ダウンロードした `uf2` ファイルをコピーします。手順は公式 doc を参照してください。bootloader mode に起動するときだけマイコンのスイッチを押す必要がありますが、これ以降はマイコンのスイッチを押す必要はないためこの作業が終わったらマイコンカバーをつけてよいです。
 - bootloader mode への入り方
@@ -127,7 +127,8 @@ git clone --recursive https://github.com/goropikari/CorneMiniEC
 ├── boot.py
 ├── code.py
 ├── kmk/
-└── scanner.py
+├── scanner.py
+└── settings.toml
 ```
 
 両手のマイコンに配置したら一度 USB ケーブルを抜き再度接続してください。このときはストレージとしてマウントされません。USB ケーブルは左右どちらに接続しても構いません。
@@ -141,7 +142,7 @@ USB ケーブルを抜き、タクトスイッチを押しながら USB ケー�
 ### 閾値調整
 
 
-`code.py` で `debug=False` になっている部分を `True` に、`boot.py` の「debug するときは下2行をコメントアウトする」と書かれている2行をコメントアウトし、USB ケーブルを抜き差しすると各スイッチの電圧が出力されるようになります。このときはキーを押しても何も入力されません。
+`settings.py` で `DEBUG=0` になっている部分を `DEBUG=1` にし、USB ケーブルを抜き差しすると各スイッチの電圧が出力されるようになります。このときはキーを押しても何も入力されません。
 
 出力は [picocom](https://wiki.archlinux.jp/index.php/%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB#picocom) や [Mu editor](https://codewith.mu/) を使うと見ることが出来ます。下図は Mu editor を使って出力値をプロットしているところです。
 ![閾値](./img/threshold.png)
@@ -149,8 +150,8 @@ USB ケーブルを抜き、タクトスイッチを押しながら USB ケー�
 この出力値を参考に閾値を調節してください。初期値は下記のように設定されています。
 
 ```python
-low_threshold=0.7,
-high_threshold=0.8,
+low_threshold=0.6,
+high_threshold=0.7,
 ```
 
 ここで `high_threshold`, `low_threshold` は [tomsmalley/custom-topre-guide](https://github.com/tomsmalley/custom-topre-guide/blob/c4a8cadadc9f8ab422d9cba28a28701198a1bd22/README.md#overview) における Actuation Depth, Release Depth にそれぞれ対応します。
