@@ -2,6 +2,10 @@
 
 ![corne miniec](img/corne_miniec.png)
 
+
+**Corne miniEC is made by goropikari(not by foostan, the original designer of [crkbd](https://github.com/foostan/crkbd)). Please do NOT contact foostan regarding this product.**
+
+
 ## 部品
 ### 必要なもの
 
@@ -163,3 +167,6 @@ high_threshold=0.7,
 キーマップやその他設定をいじっているとバグらせてしまうことが多々あります。その結果コードの書き換えが一切出来ない状態になることがあります。そのようなときは下記の記事を参考にマイコンを初期状態にリセットしてみてください。
 
 https://zenn.dev/link/comments/c6600bde683fe6
+
+
+# 
