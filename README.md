@@ -14,11 +14,11 @@
 | PCB                                             |    左右用 | https://pikarikbd.booth.pm/items/4530773                                                                                                                                                                                                                                                       |
 | アクリルプレート                                |  左右用 | corne mini 用のアクリルプレートを購入してください<br>https://shop.yushakobo.jp/products/keyboard_acrylic_plate?variant=37715871236257                                                                                                                                                                      |
 | TRRS ジャック                                   |    2 | https://akizukidenshi.com/catalog/g/gC-06070/                                                                                                                                                                                                         |
-| タクトスイッチ(オプション)                      |    2 | 原理上はなくてもよいです<br>https://akizukidenshi.com/catalog/g/gP-08073/                                                                                                                                                                                                         |
+| タクトスイッチ(オプション)                      |    2 | 原理上はなくてもよいです。今回の firmware では XIAO RP2040 をストレージとして認識させるか否かの制御のために使っています<br>https://akizukidenshi.com/catalog/g/gP-08073/                                                                                                                                                                                                         |
 | 7pin socket(オプション)                                     |    4 | マイコンを取り外し可能にする場合のみ必要です<br>https://www.hirosugi-net.co.jp/shop/g/g24084/                                                                                                                                                                                                         |
 | ハーフピッチ 16pin ソケット(オプション) |    2 | 静電容量スイッチスキャン用モジュールを取り外し可能にする場合のみ必要です。16ピン用は売っていないので20ピン用をカットして使います<br> https://www.hirosugi-net.co.jp/shop/g/g18851/                                                                                                                                                                                                         |
 | M2 8.5mm スペーサー                             |   10 | https://www.hirosugi-net.co.jp/shop/g/g2395/                                                                                                                                                                                                          |
-| M2 10mm スペーサー                              |    4 | マイコンカバー用。マイコン部分をどのようにはんだ付けするかによって最適な高さは変わります。<br>https://www.hirosugi-net.co.jp/shop/g/g2398/                                                                                                                                                                                                          |
+| M2 10mm スペーサー                              |    4 | マイコンカバー用。マイコン部分をどのようにはんだ付けするかによって最適な高さは変わります。「[マイコンカバー用スペーサー](#マイコンカバー用スペーサー)」にどれくらいの隙間ができるのかの写真を貼ってありますので参考にしてください。<br>https://www.hirosugi-net.co.jp/shop/g/g2398/                                                                                                                                                                                                          |
 | M5 2mm スペーサー                               |   10 | https://www.hirosugi-net.co.jp/shop/g/g3318/                                                                                                                                                                                                          |
 | M2 4 mm 低頭ねじ                                     |   10 | https://wilco.jp/products/F/FX-E.html#page3                                                                                                                                                                                                         |
 | M2 4 mm ねじ                                     |   18 | M2 4 mm ネジは全て低頭ネジにしても構いません<br>https://www.hirosugi-net.co.jp/shop/g/g36905/                                                                                                                                                                                                         |
@@ -76,6 +76,11 @@
 ラバーシートを切り出しハウジングにかぶせ、コニカルスプリングを配置します。
 
 ![string](img/sheet_conical_spring.png)
+
+
+(余談) ラバーシートの側面に穴を開けると打鍵が軽くなります。一方でタクタイル感が減りリニアに違い打鍵感になります。写真では直径 3 mm の穴を1キーあたり4つ開けています。
+
+![hole_sheet](https://raw.githubusercontent.com/goropikari/miniEC/main/img/rubber_sheet_hole.jpg)
 
 
 ### マイコンカバー用スペーサー
@@ -167,6 +172,3 @@ high_threshold=0.7,
 キーマップやその他設定をいじっているとバグらせてしまうことが多々あります。その結果コードの書き換えが一切出来ない状態になることがあります。そのようなときは下記の記事を参考にマイコンを初期状態にリセットしてみてください。
 
 https://zenn.dev/link/comments/c6600bde683fe6
-
-
-# 
