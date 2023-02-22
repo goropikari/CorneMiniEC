@@ -173,3 +173,13 @@ high_threshold=0.7,
 キーマップやその他設定をいじっているとバグらせてしまうことが多々あります。その結果コードの書き換えが一切出来ない状態になることがあります。そのようなときは下記の記事を参考にマイコンを初期状態にリセットしてみてください。
 
 https://zenn.dev/link/comments/c6600bde683fe6
+
+## KMK firmware documentation
+
+KMK firmware はバージョンタグが切られておらず、それに伴い website も常に最新の記述になってしまっているため、この静電容量 corne mini で使用した KMK firmware とは設定項目が変わっている可能性があります。そのため corne mini が使っている kmk firmware 時点でのサイトを Docker image にしました。もし本家の記述でうまく設定できなかった場合はこちらの docker image をお使いください。
+
+```bash
+docker run -p 3000:3000 goropikari/kmk_website:corneminiecv0.1
+```
+
+http://localhost:3000 にアクセス
