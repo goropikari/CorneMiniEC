@@ -1,9 +1,8 @@
-# Corne miniEC Build Guide
+# 静電容量 corne mini (corne miniEC) Build Guide
 
 ![corne miniec](img/corne_miniec.png)
 
-
-**Corne miniEC is made by goropikari(not by foostan, the original designer of [crkbd](https://github.com/foostan/crkbd)). Please do NOT contact foostan regarding this product.**
+**静電容量 corne mini は goropikari によって設計されました。オリジナルの [corne シリーズ](https://github.com/foostan/crkbd) を設計された foostan 氏とは無関係です。この製品に関する問い合わせを foostan 氏にすることはお控えください。**
 
 
 ## 部品
