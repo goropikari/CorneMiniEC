@@ -115,7 +115,7 @@ bootloader mode で起動し、ダウンロードした `uf2` ファイルをコ
   - https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython#bootloader-mode-3105160
 
 コピーし終わると `CIRCUITPY` という名前でストレージがマウントされます。
-後のためにストレージ名を左手用のマイコンは `NYQUISTL`, 右手用は `NYQUISTR` にリネームしておいてください。リネームを行わないと分割キーボードとして機能しなくなります。
+後のためにストレージ名を左手用のマイコンは `NYQUISTL`, 右手用は `NYQUISTR` にリネームしておいてください。**リネームを行わないと分割キーボードとして機能しません**。
 - リネームの仕方
   - https://learn.adafruit.com/welcome-to-circuitpython/renaming-circuitpy
 
