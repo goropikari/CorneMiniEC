@@ -106,7 +106,9 @@
 ## Firmware
 
 XIAO RP2040 用の CircuitPython を[ダウンロード](https://circuitpython.org/board/seeeduino_xiao_rp2040/)します。
-(動作確認は [version 8.0.0](https://adafruit-circuit-python.s3.amazonaws.com/bin/seeeduino_xiao_rp2040/en_US/adafruit-circuitpython-seeeduino_xiao_rp2040-en_US-8.0.0.uf2) で行いました。)
+(動作確認は [version 8.0.4](https://adafruit-circuit-python.s3.amazonaws.com/bin/seeeduino_xiao_rp2040/en_US/adafruit-circuitpython-seeeduino_xiao_rp2040-en_US-8.0.4.uf2) で行いました。)
+
+
 
 bootloader mode で起動し、ダウンロードした `uf2` ファイルをコピーします。手順は公式 doc を参照してください。bootloader mode に起動するときだけマイコンのスイッチを押す必要がありますが、これ以降はマイコンのスイッチを押す必要はないためこの作業が終わったらマイコンカバーをつけてよいです。
 - bootloader mode への入り方
@@ -178,7 +180,7 @@ https://zenn.dev/link/comments/c6600bde683fe6
 KMK firmware はバージョンタグが切られておらず、それに伴い website も常に最新の記述になってしまっているため、この静電容量 corne mini で使用した KMK firmware とは設定項目が変わっている可能性があります。そのため corne mini が使っている kmk firmware 時点でのサイトを Docker image にしました。もし本家の記述でうまく設定できなかった場合はこちらの docker image をお使いください。
 
 ```bash
-docker run -p 3000:3000 goropikari/kmk_website:corneminiecv0.1
+docker run -p 3000:3000 goropikari/kmk_website:corne_miniec_v0.1
 ```
 
 http://localhost:3000 にアクセス

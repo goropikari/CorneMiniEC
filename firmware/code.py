@@ -3,8 +3,7 @@ from kmk.kmk_keyboard import KMKKeyboard
 from kmk.keys import KC
 from kmk.modules.split import Split
 from kmk.modules.layers import Layers
-from kmk.modules.modtap import ModTap
-from kmk.modules.holdtap import HoldTapRepeat
+from kmk.modules.holdtap import HoldTap, HoldTapRepeat
 import scanner
 import os
 
@@ -27,10 +26,10 @@ col_channels=[S5, S6, S4, S1, S2, S3]
 
 tap_time = 125
 
-modtap = ModTap()
-modtap.tap_time = tap_time
-modtap.prefer_hold = False
-keyboard.modules.append(modtap)
+holdtap = HoldTap()
+holdtap.tap_time = tap_time
+holdtap.prefer_hold = False
+keyboard.modules.append(holdtap)
 
 layer = Layers()
 layer.tap_time = tap_time
@@ -55,13 +54,13 @@ _lower = 1
 _raise = 2
 _adjust = 3
 
-EscGUI = KC.MT(KC.ESC, KC.RGUI, repeat=HoldTapRepeat.HOLD)
+EscGUI = KC.HT(KC.ESC, KC.RGUI, repeat=HoldTapRepeat.HOLD)
 LowMins = KC.LT(_lower, KC.MINS, repeat=HoldTapRepeat.HOLD)
 AdjEnt = KC.LT(_adjust, KC.ENT, repeat=HoldTapRepeat.HOLD)
 AdjMins = KC.LT(_adjust, KC.MINS, repeat=HoldTapRepeat.HOLD)
 Adjust = KC.MO(_adjust)
 RaiEnt = KC.LT(_raise, KC.ENT, prefer_hold=True, repeat=HoldTapRepeat.HOLD)
-Sands = KC.MT(KC.SPC, KC.RSFT, repeat=HoldTapRepeat.HOLD)
+Sands = KC.HT(KC.SPC, KC.RSFT, repeat=HoldTapRepeat.HOLD)
 
 
 keyboard.keymap = [
