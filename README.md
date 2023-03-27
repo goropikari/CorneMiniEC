@@ -24,7 +24,7 @@
 | ゴム足                                          |    8 | https://www.amazon.co.jp/dp/B08WYNYLSK |
 | 静電容量スイッチスキャン用モジュール            |    2 | 2023/1/20 時点ではハーフピッチピンヘッダーもつけていただけていますが、もしつかなくなっていたら別途購入してください<br>https://nogikes.booth.pm/items/2710697 |
 | Seeed Studio XIAO RP2040                        |    2 | - https://akizukidenshi.com/catalog/g/gM-17044/ <br>- https://talpkeyboard.net/items/63534f58f5197322fceb6487 <br>- https://www.switch-science.com/products/7634?gclid=Cj0KCQiAn4SeBhCwARIsANeF9DKmqjOd5mDyTjdRjlI8Az9yD6eNxgfJHfWghG-0v4dwvCrwWmRG_JkaAuxmEALw_wcB |
-| NEW NIZ EC SWITCH                               |   36キー分 | - https://shop.yushakobo.jp/products/5224 <br/>- https://shop.beekeeb.com/product/niz-ec-switch/  |
+| NEW NIZ EC SWITCH                               |   36キー分 | - https://shop.yushakobo.jp/products/5224 <br/>- https://shop.beekeeb.com/product/niz-ec-switch/ <br/>- https://www.nizkeyboard.com/products/2019-new-niz-ec-switch |
 | コニカルスプリング                              |   36キー分 | - https://shop.yushakobo.jp/products/4679 <br/>- https://shop.beekeeb.com/product/niz-ec-switch/  |
 | ラバーシート                                    |    36キー分 | - https://shop.yushakobo.jp/products/a0500er-01-1 <br/>- https://btoshop.jp/products/adelcpru?_pos=1&_sid=f788dfe94&_ss=r |
 | キーキャップ                                    |   36キー分 | MX 互換のもの。イメージ写真で使っているものは [Majestouch Xacro 交換用キーキャップです](https://www.diatec.co.jp/shop/det.php?prod_c=6242) |
@@ -33,7 +33,7 @@
 
 ## 実装
 
-写真のように置いたときの向きが左右の表面です。
+写真のように置いたときの向きが左右の表面です。(写真は v0.1 のものです。v0.2 とはシルクが若干異なりますが動作に違いはありません)
 
 ![基板写真](img/pcb.jpg)
 
