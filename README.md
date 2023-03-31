@@ -11,7 +11,7 @@
 | 品目                                            | 数量 | 備考                                                                                                                                                                                                                                                  |
 |-------------------------------------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | PCB                                             |    左右用 | https://pikarikbd.booth.pm/items/4530773 |
-| アクリルプレート                                |  左右用 | corne mini 用のアクリルプレートを購入してください<br>https://shop.yushakobo.jp/products/keyboard_acrylic_plate?variant=37715871236257 |
+| アクリルプレート                                |  左右用 | corne mini 用のアクリルプレートを購入してください。(厚さは 2 mm にしてください)<br>https://shop.yushakobo.jp/products/keyboard_acrylic_plate?variant=37715871236257 |
 | TRRS ジャック                                   |    2 | https://akizukidenshi.com/catalog/g/gC-06070/  |
 | タクトスイッチ(オプション)                      |    2 | 原理上はなくてもよいです。今回の firmware では XIAO RP2040 をストレージとして認識させるか否かの制御のために使っています<br>https://akizukidenshi.com/catalog/g/gP-08073/ |
 | 7pin socket(オプション)                                     |    4 | マイコンを取り外し可能にする場合のみ必要です<br>https://www.hirosugi-net.co.jp/shop/g/g24084/ |
@@ -28,6 +28,7 @@
 | コニカルスプリング                              |   36キー分 | - https://shop.yushakobo.jp/products/4679 <br/>- https://shop.beekeeb.com/product/niz-ec-switch/  |
 | ラバーシート                                    |    36キー分 | - https://shop.yushakobo.jp/products/a0500er-01-1 <br/>- https://btoshop.jp/products/adelcpru?_pos=1&_sid=f788dfe94&_ss=r |
 | キーキャップ                                    |   36キー分 | MX 互換のもの。イメージ写真で使っているものは [Majestouch Xacro 交換用キーキャップです](https://www.diatec.co.jp/shop/det.php?prod_c=6242) |
+| O リング(オプション)                                   |    36キー分 | キーを押したときにキーキャップとネジが衝突する場合があります。その場合は O リングをつけてストロークが浅くなるように調整してください。 <br/>https://shop.yushakobo.jp/products/a0400or-02-1 |
 | TRRSケーブル                                    |    1 | https://shop.yushakobo.jp/products/trrs_cable?_pos=2&_sid=739f146d9&_ss=r |
 
 
