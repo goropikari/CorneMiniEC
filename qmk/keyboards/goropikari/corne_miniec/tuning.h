@@ -7,13 +7,13 @@
 #define EC_KEYS_PER_HAND (EC_ROWS_PER_HAND * MATRIX_COLS)
 
 typedef struct {
-    uint16_t press;
-    uint16_t release;
+  uint16_t press;
+  uint16_t release;
 } ec_offsets_t;
 
 typedef struct {
-    uint16_t sample;
-    uint16_t baseline;
+  uint16_t sample;
+  uint16_t baseline;
 } ec_reading_t;
 
 void ec_tuning_init(void);

@@ -22,7 +22,7 @@ row_pins = (board.D4, board.D5, board.D6)
 adc_port = board.A0
 discharge_port = board.D1
 mux_sels = (board.D10, board.D9, board.D8)
-col_channels=[S5, S6, S4, S1, S2, S3]
+col_channels = [S5, S6, S4, S1, S2, S3]
 
 tap_time = 125
 
@@ -113,8 +113,8 @@ keyboard.matrix = scanner.ECMatrixScanner(
     discharge_port=discharge_port,
     low_threshold=0.6,
     high_threshold=0.7,
-    debug=os.getenv('DEBUG', 0) == 1,
+    debug=os.getenv("DEBUG", 0) == 1,
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     keyboard.go()

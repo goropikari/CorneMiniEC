@@ -6,17 +6,18 @@ from storage import getmount
 from kmk.scanners import Scanner
 from kmk.modules.split import SplitSide
 
+
 class ECMatrixScanner(Scanner):
     def __init__(
         self,
-        col_channels,    # Array[Integer]
-        rows,            # Array[Pin]
-        mux_sels,        # Array[Pin]
-        adc_port,        # Pin
+        col_channels,  # Array[Integer]
+        rows,  # Array[Pin]
+        mux_sels,  # Array[Pin]
+        adc_port,  # Pin
         discharge_port,  # Pin
-        low_threshold,   # int
+        low_threshold,  # int
         high_threshold,  # int
-        debug=True
+        debug=True,
     ):
         self.col_channels = col_channels
         self.len_cols = len(col_channels)
@@ -31,7 +32,9 @@ class ECMatrixScanner(Scanner):
         self.vals = [0 for i in range(self.len_cols * self.len_rows)]
 
         self.keynum_offset = 0
-        side = SplitSide.RIGHT if str(getmount('/').label)[-1] == 'R' else SplitSide.LEFT
+        side = (
+            SplitSide.RIGHT if str(getmount("/").label)[-1] == "R" else SplitSide.LEFT
+        )
         if side == SplitSide.RIGHT:
             self.keynum_offset = self.len_cols * self.len_rows
 
@@ -40,9 +43,9 @@ class ECMatrixScanner(Scanner):
         #
         # repr() hackery is because CircuitPython Pin objects are not hashable
         unique_pins = {repr(c) for c in col_channels} | {repr(r) for r in rows}
-        assert (
-            len(unique_pins) == self.len_cols + self.len_rows
-        ), 'Cannot use a pin as both a column and row'
+        assert len(unique_pins) == self.len_cols + self.len_rows, (
+            "Cannot use a pin as both a column and row"
+        )
         del unique_pins
 
         # __class__.__name__ is used instead of isinstance as the MCP230xx lib
@@ -50,15 +53,11 @@ class ECMatrixScanner(Scanner):
         # https://github.com/adafruit/Adafruit_CircuitPython_MCP230xx/blob/3f04abbd65ba5fa938fcb04b99e92ae48a8c9406/adafruit_mcp230xx/digital_inout.py#L33
 
         self.rows = [
-            x
-            if x.__class__.__name__ == 'DigitalInOut'
-            else digitalio.DigitalInOut(x)
+            x if x.__class__.__name__ == "DigitalInOut" else digitalio.DigitalInOut(x)
             for x in rows
         ]
         self.mux_sels = [
-            x
-            if x.__class__.__name__ == 'DigitalInOut'
-            else digitalio.DigitalInOut(x)
+            x if x.__class__.__name__ == "DigitalInOut" else digitalio.DigitalInOut(x)
             for x in mux_sels
         ]
 
@@ -88,7 +87,7 @@ class ECMatrixScanner(Scanner):
         self.niter %= 50
         if self.debug:
             if self.key == 0 and self.niter == 0:
-                print('(' + ",".join(map(lambda i: str(i), self.vals)) + ')')
+                print("(" + ",".join(map(lambda i: str(i), self.vals)) + ")")
             return None
 
         if any_changed:
