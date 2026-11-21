@@ -43,12 +43,14 @@ split = Split(
 )
 keyboard.modules.append(split)
 
+# fmt: off
 keyboard.coord_mapping = [
      4,  3,  2,  1,  0,  23, 22, 21, 20, 19,
     10,  9,  8,  7,  6,  29, 28, 27, 26, 25,
     16, 15, 14, 13, 12,  35, 34, 33, 32, 31,
             17, 11,  5,  18, 24, 30
 ]
+# fmt: on
 
 _lower = 1
 _raise = 2
@@ -63,6 +65,7 @@ RaiEnt = KC.LT(_raise, KC.ENT, prefer_hold=True, repeat=HoldTapRepeat.HOLD)
 Sands = KC.HT(KC.SPC, KC.RSFT, repeat=HoldTapRepeat.HOLD)
 
 
+# fmt: off
 keyboard.keymap = [
     # default layer
     [
@@ -100,6 +103,7 @@ keyboard.keymap = [
                           KC.TRNS, KC.TRNS, KC.NO  ,  KC.TRNS, KC.TRNS, KC.TRNS
     ],
 ]
+# fmt: on
 
 keyboard.matrix = scanner.ECMatrixScanner(
     col_channels=col_channels,
