@@ -38,7 +38,7 @@ for hand in left right; do
 		-v "$dir/build:/opt/vial-qmk/.build" \
 		-e HOME=/tmp \
 		-e SKIP_GIT=yes \
-		"$image" make "goropikari/corne_miniec:$keymap" \
+		"$image" make "corne_miniec:$keymap" \
 		"EXTRAFLAGS=-DINIT_EE_HANDS_$handedness" \
 		"TARGET=\$(KEYBOARD_FILESAFE)_\$(KEYMAP)_$hand"
 done
