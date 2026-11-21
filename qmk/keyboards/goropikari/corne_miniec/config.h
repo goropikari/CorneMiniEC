@@ -21,6 +21,7 @@
 #define EC_RELEASE_OFFSET 480
 #define EC_PRESS_OFFSET 560
 #define EC_DISCHARGE_US 5
+#define EC_ADC_SETTLE_US 1
 
 // Store a press/release pair of 16-bit offsets for each local key.
 #define EECONFIG_KB_DATA_SIZE (MATRIX_ROWS / 2 * MATRIX_COLS * 4)

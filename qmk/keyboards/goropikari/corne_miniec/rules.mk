@@ -1,5 +1,4 @@
 CUSTOM_MATRIX = lite
 SPLIT_KEYBOARD = yes
 SERIAL_DRIVER = vendor
-ANALOG_DRIVER_REQUIRED = yes
 SRC += matrix.c tuning.c
