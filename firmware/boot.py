@@ -9,7 +9,7 @@ import os
 supervisor.runtime.next_stack_limit = 4096 + 4096
 supervisor.runtime.autoreload = False
 
-if os.getenv('DEBUG') != 1:
+if os.getenv("DEBUG") != 1:
     usb_cdc.disable()
 
 # タクトスイッチを押しながらだとストレージとして認識される
