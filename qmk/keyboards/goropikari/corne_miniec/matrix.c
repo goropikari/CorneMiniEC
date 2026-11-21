@@ -19,10 +19,10 @@
 #include "keyboard.h"
 #include "matrix.h"
 #include "timer.h"
+#include "tuning.h"
 #include "util.h"
 #include "wait.h"
 
-#define ROWS_PER_HAND (MATRIX_ROWS / 2)
 #define CALIBRATION_STABLE_MARGIN 32
 #define CALIBRATION_SETTLE_US 30
 #define CALIBRATION_STABLE_ROUNDS 10
@@ -38,17 +38,17 @@ static const pin_t mux_pins[] = EC_MUX_PINS;
 // Module inputs S5, S6, S4, S1, S2, S3 map to matrix columns 0 through 5.
 static const uint8_t mux_channels[] = {4, 5, 3, 0, 1, 2};
 
-_Static_assert(ARRAY_SIZE(drive_pins) == ROWS_PER_HAND, "Invalid local row count");
+_Static_assert(ARRAY_SIZE(drive_pins) == EC_ROWS_PER_HAND, "Invalid local row count");
 _Static_assert(ARRAY_SIZE(mux_channels) == MATRIX_COLS, "Invalid column count");
-_Static_assert(0 < EC_RELEASE_OFFSET && EC_RELEASE_OFFSET < EC_PRESS_OFFSET && EC_PRESS_OFFSET < (1U << ADC_RESOLUTION), "Invalid EC offsets");
 
 typedef struct {
     uint16_t baseline;
+    uint16_t sample;
     int32_t filtered;
     uint16_t history[CALIBRATION_HISTORY_SIZE];
 } key_calibration_t;
 
-static key_calibration_t calibration[ROWS_PER_HAND][MATRIX_COLS];
+static key_calibration_t calibration[EC_ROWS_PER_HAND][MATRIX_COLS];
 static uint8_t history_slot;
 static uint32_t last_calibration;
 static bool calibration_ready;
@@ -74,7 +74,7 @@ void matrix_init_custom(void) {
     gpio_write_pin_low(EC_DISCHARGE_PIN);
     gpio_set_pin_output(EC_DISCHARGE_PIN);
 
-    for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+    for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
         gpio_write_pin_low(drive_pins[row]);
         gpio_set_pin_output(drive_pins[row]);
     }
@@ -91,7 +91,7 @@ void matrix_init_custom(void) {
 static void calibrate_idle_levels(void) {
     for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
         select_mux(col);
-        for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+        for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
             (void)read_sample(row);
             calibration[row][col].baseline = UINT16_MAX;
             wait_us(CALIBRATION_SETTLE_US);
@@ -104,9 +104,10 @@ static void calibrate_idle_levels(void) {
         bool stable = true;
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
             select_mux(col);
-            for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+            for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
                 key_calibration_t *key = &calibration[row][col];
-                uint16_t sample = read_sample(row);
+                const uint16_t sample = read_sample(row);
+                key->sample = sample;
                 if (sample < key->baseline) {
                     key->baseline = sample;
                     stable = false;
@@ -119,7 +120,7 @@ static void calibrate_idle_levels(void) {
         stable_rounds = stable ? stable_rounds + 1 : 0;
     }
 
-    for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+    for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
             key_calibration_t *key = &calibration[row][col];
             key->filtered = (int32_t)key->baseline * CALIBRATION_FILTER_SCALE;
@@ -133,6 +134,7 @@ static void calibrate_idle_levels(void) {
 void keyboard_post_init_kb(void) {
     // Bootmagic has already scanned with the fixed thresholds.
     calibrate_idle_levels();
+    ec_tuning_init();
     history_slot = 0;
     last_calibration = timer_read32();
     calibration_ready = true;
@@ -145,7 +147,7 @@ static void update_baselines(void) {
     }
 
     last_calibration = timer_read32();
-    for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+    for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
             key_calibration_t *key = &calibration[row][col];
             key->history[history_slot] = (key->filtered + CALIBRATION_FILTER_SCALE / 2) / CALIBRATION_FILTER_SCALE;
@@ -165,7 +167,7 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
 #ifdef BOOTMAGIC_ENABLE
         // Keep the normal matrix clear until the idle baselines are available.
         const bool left = is_keyboard_left();
-        const uint8_t row = (left ? BOOTMAGIC_ROW : BOOTMAGIC_ROW_RIGHT) % ROWS_PER_HAND;
+        const uint8_t row = (left ? BOOTMAGIC_ROW : BOOTMAGIC_ROW_RIGHT) % EC_ROWS_PER_HAND;
         const uint8_t col = left ? BOOTMAGIC_COLUMN : BOOTMAGIC_COLUMN_RIGHT;
         const matrix_row_t mask = MATRIX_ROW_SHIFTER << col;
         const bool was_pressed = (current_matrix[row] & mask) != 0;
@@ -185,11 +187,13 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
         select_mux(col);
         const matrix_row_t key_mask = MATRIX_ROW_SHIFTER << col;
-        for (uint8_t row = 0; row < ROWS_PER_HAND; ++row) {
+        for (uint8_t row = 0; row < EC_ROWS_PER_HAND; ++row) {
             key_calibration_t *key = &calibration[row][col];
-            uint16_t sample = read_sample(row);
-            uint16_t press = key->baseline + EC_PRESS_OFFSET;
-            uint16_t release = key->baseline + EC_RELEASE_OFFSET;
+            const uint16_t sample = read_sample(row);
+            key->sample = sample;
+            const ec_offsets_t offsets = ec_tuning_offsets(row * MATRIX_COLS + col);
+            const uint16_t press = key->baseline + offsets.press;
+            const uint16_t release = key->baseline + offsets.release;
             bool was_pressed = (current_matrix[row] & key_mask) != 0;
             bool pressed = sample >= (was_pressed ? release : press);
 
@@ -208,4 +212,9 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
 
     update_baselines();
     return changed;
+}
+
+ec_reading_t ec_matrix_reading(uint8_t index) {
+    const key_calibration_t *key = &calibration[index / MATRIX_COLS][index % MATRIX_COLS];
+    return (ec_reading_t){key->sample, key->baseline};
 }
