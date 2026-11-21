@@ -22,6 +22,10 @@
 #define EC_PRESS_OFFSET 560
 #define EC_DISCHARGE_US 5
 
+// Store a press/release pair of 16-bit offsets for each local key.
+#define EECONFIG_KB_DATA_SIZE (MATRIX_ROWS / 2 * MATRIX_COLS * 4)
+#define EECONFIG_KB_DATA_VERSION 0x43450001UL
+
 // KMK's absolute thresholds are used by the scan before calibration (Bootmagic).
 #define EC_STARTUP_RELEASE_THRESHOLD 745
 #define EC_STARTUP_PRESS_THRESHOLD 869
