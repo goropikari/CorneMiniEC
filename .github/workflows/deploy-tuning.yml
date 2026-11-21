@@ -6,8 +6,8 @@ on:
       - main
     paths:
       - ".github/workflows/deploy-tuning.yml"
-      - "qmk/keyboards/goropikari/corne_miniec/tuning/**"
-      - "qmk/keyboards/goropikari/corne_miniec/keyboard.json"
+      - "qmk/keyboards/corne_miniec/tuning/**"
+      - "qmk/keyboards/corne_miniec/keyboard.json"
   workflow_dispatch:
 
 permissions: {}
@@ -37,7 +37,7 @@ jobs:
       - name: Prepare tuning site
         run: |
           mkdir -p _site
-          tuning=qmk/keyboards/goropikari/corne_miniec/tuning
+          tuning=qmk/keyboards/corne_miniec/tuning
           cp "$tuning"/{index.html,tuning.js} _site/
           python3 "$tuning/generate-layout.py" > _site/layout.json
 

@@ -4,7 +4,7 @@
 
 ## ファームウェアの入手
 
-[GitHub Releases](https://github.com/goropikari/CorneMiniEC/releases) の Assets で、選んだキーマップの `goropikari_corne_miniec_<keymap>_left.uf2` と `goropikari_corne_miniec_<keymap>_right.uf2` を入手します。バージョンタグが push されると、[リリースワークフロー](../.github/workflows/release-firmware.yml) が全キーマップをビルドして、UF2 とビルド情報を添付します。
+[GitHub Releases](https://github.com/goropikari/CorneMiniEC/releases) の Assets で、選んだキーマップの `corne_miniec_<keymap>_left.uf2` と `corne_miniec_<keymap>_right.uf2` を入手します。バージョンタグが push されると、[リリースワークフロー](../.github/workflows/release-firmware.yml) が全キーマップをビルドして、UF2 とビルド情報を添付します。
 
 ## ビルド
 
@@ -45,7 +45,7 @@ UF2 は `qmk/build/` に出力されます。全キーマップでは12ファイ
 ローカルではリポジトリのルートで以下を実行し、<http://localhost:8000/tuning/> を開きます。
 
 ```sh
-python3 -m http.server 8000 --bind 127.0.0.1 --directory qmk/keyboards/goropikari/corne_miniec
+python3 -m http.server 8000 --bind 127.0.0.1 --directory qmk/keyboards/corne_miniec
 ```
 
 ## Vial での編集
@@ -54,4 +54,4 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory qmk/keyboards/goropikar
 
 Vial で編集した配列は、USB 接続した側に保存されます。左右の USB 端子を使い分ける場合は、同じ配列を使えるよう両側に設定してください。
 
-基板固有のスキャン設定は [Corne MiniEC v0.2 のソース](keyboards/goropikari/corne_miniec/readme.md) を参照してください。
+基板固有のスキャン設定は [Corne MiniEC v0.2 のソース](keyboards/corne_miniec/readme.md) を参照してください。
