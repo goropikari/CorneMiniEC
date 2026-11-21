@@ -17,7 +17,7 @@
 #define EC_DRIVE_PINS {GP6, GP7, GP0}
 #define EC_MUX_PINS {GP3, GP4, GP2}
 
-// miniEC offsets of 30 and 35 in 8-bit ADC units, scaled to 12 bits.
+// Default release and press offsets in 12-bit ADC units.
 #define EC_RELEASE_OFFSET 480
 #define EC_PRESS_OFFSET 560
 #define EC_DISCHARGE_US 5
