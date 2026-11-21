@@ -56,6 +56,7 @@ _Static_assert(ARRAY_SIZE(mux_channels) == MATRIX_COLS, "Invalid column count");
 typedef struct {
   uint16_t baseline;
   uint16_t sample;
+  uint16_t previous_samples[2];
   int32_t filtered;
   uint16_t history[CALIBRATION_HISTORY_SIZE];
 } key_calibration_t;
@@ -131,10 +132,22 @@ void matrix_init_custom(void) {
 
 static void seed_calibration(key_calibration_t *key, uint16_t baseline) {
   key->baseline = baseline;
+  key->previous_samples[0] = baseline;
+  key->previous_samples[1] = baseline;
   key->filtered = (int32_t)baseline * CALIBRATION_FILTER_SCALE;
   for (uint8_t slot = 0; slot < CALIBRATION_HISTORY_SIZE; ++slot) {
     key->history[slot] = baseline;
   }
+}
+
+static uint16_t median_sample(key_calibration_t *key, uint16_t sample) {
+  const uint16_t lower =
+      MIN(key->previous_samples[0], key->previous_samples[1]);
+  const uint16_t upper =
+      MAX(key->previous_samples[0], key->previous_samples[1]);
+  key->previous_samples[0] = key->previous_samples[1];
+  key->previous_samples[1] = sample;
+  return MIN(MAX(sample, lower), upper);
 }
 
 static void calibrate_idle_levels(void) {
@@ -263,7 +276,8 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
       const uint16_t press = key->baseline + offsets.press;
       const uint16_t release = key->baseline + offsets.release;
       bool was_pressed = (current_matrix[row] & key_mask) != 0;
-      bool pressed = sample >= (was_pressed ? release : press);
+      const uint16_t median = median_sample(key, sample);
+      bool pressed = median >= (was_pressed ? release : press);
 
       if (pressed != was_pressed) {
         current_matrix[row] ^= key_mask;
