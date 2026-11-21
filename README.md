@@ -71,7 +71,9 @@
 
 ![string](img/sheet_conical_spring.png)
 
-(余談) ラバーシートの側面に穴を開けると打鍵が軽くなります。一方でタクタイル感が減りリニアに近い打鍵感になります。
+(余談) ラバーシートの側面に穴を開けると打鍵が軽くなります。一方でタクタイル感が減りリニアに近い打鍵感になります。写真では直径 3 mm の穴を1キーあたり4つ開けています。
+
+![側面に穴を開けたラバーシート](https://raw.githubusercontent.com/goropikari/miniEC/9dda3b115766810f676c9cbbe37d77bff7cf8ceb/img/rubber_sheet_hole.jpg)
 
 ### マイコンカバー用スペーサー
 
