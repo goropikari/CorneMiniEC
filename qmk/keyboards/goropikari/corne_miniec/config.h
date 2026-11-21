@@ -8,7 +8,7 @@
 
 // With no VBUS sense pin, determine the master by USB enumeration.
 #define SPLIT_USB_DETECT
-#define MASTER_LEFT
+#define EE_HANDS
 #define SERIAL_USART_TX_PIN GP1
 
 #define ADC_RESOLUTION 12
@@ -17,10 +17,14 @@
 #define EC_DRIVE_PINS { GP6, GP7, GP0 }
 #define EC_MUX_PINS { GP3, GP4, GP2 }
 
-// KMK thresholds of 0.6 V (release) and 0.7 V (press), at 3.3 V.
-#define EC_RELEASE_THRESHOLD 745
-#define EC_PRESS_THRESHOLD 869
+// miniEC offsets of 30 and 35 in 8-bit ADC units, scaled to 12 bits.
+#define EC_RELEASE_OFFSET 480
+#define EC_PRESS_OFFSET 560
 #define EC_DISCHARGE_US 5
+
+// KMK's absolute thresholds are used by the scan before calibration (Bootmagic).
+#define EC_STARTUP_RELEASE_THRESHOLD 745
+#define EC_STARTUP_PRESS_THRESHOLD 869
 
 #define TAP_CODE_DELAY 5
 #define TAPPING_TERM 125

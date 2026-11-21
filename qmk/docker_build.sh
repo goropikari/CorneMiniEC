@@ -29,10 +29,16 @@ if [ "$RUNTIME" = docker ]; then
     set -- --user "$(id -u):$(id -g)"
 fi
 
-"$RUNTIME" run --rm "$@" \
-    -w /home/vscode/vial-qmk \
-    -v "$dir/keyboards:/home/vscode/vial-qmk/keyboards:ro" \
-    -v "$dir/build:/home/vscode/vial-qmk/.build" \
-    -e HOME=/tmp \
-    -e SKIP_GIT=yes \
-    "$image" make "goropikari/corne_miniec:$keymap"
+# Use distinct QMK targets so left and right builds also have distinct object files.
+for hand in left right; do
+    handedness=$(printf '%s' "$hand" | tr '[:lower:]' '[:upper:]')
+    "$RUNTIME" run --rm "$@" \
+        -w /opt/vial-qmk \
+        -v "$dir/keyboards:/opt/vial-qmk/keyboards:ro" \
+        -v "$dir/build:/opt/vial-qmk/.build" \
+        -e HOME=/tmp \
+        -e SKIP_GIT=yes \
+        "$image" make "goropikari/corne_miniec:$keymap" \
+        "EXTRAFLAGS=-DINIT_EE_HANDS_$handedness" \
+        "TARGET=\$(KEYBOARD_FILESAFE)_\$(KEYMAP)_$hand"
+done

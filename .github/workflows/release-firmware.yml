@@ -65,7 +65,9 @@ jobs:
           for keymap in qmk/keyboards/goropikari/corne_miniec/keymaps/*/keymap.c; do
             test -f "$keymap"
             directory=${keymap%/keymap.c}
-            test -s "qmk/build/goropikari_corne_miniec_${directory##*/}.uf2"
+            for hand in left right; do
+              test -s "qmk/build/goropikari_corne_miniec_${directory##*/}_${hand}.uf2"
+            done
           done
           source=$(git rev-parse HEAD)
           printf 'source=%s\nbuilder=%s\n' "$source" "$CORNE_MINIEC_BUILDER_IMAGE" > qmk/build/corne-miniec-build-info.txt
@@ -74,7 +76,8 @@ jobs:
         with:
           name: corne-miniec-firmware
           path: |
-            qmk/build/goropikari_corne_miniec_*.uf2
+            qmk/build/goropikari_corne_miniec_*_left.uf2
+            qmk/build/goropikari_corne_miniec_*_right.uf2
             qmk/build/corne-miniec-build-info.txt
           if-no-files-found: error
           overwrite: true
@@ -96,7 +99,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           build_info=build/corne-miniec-build-info.txt
-          files=(build/goropikari_corne_miniec_*.uf2 "$build_info")
+          files=(build/goropikari_corne_miniec_*_{left,right}.uf2 "$build_info")
           for file in "${files[@]}"; do
             test -s "$file"
           done

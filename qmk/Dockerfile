@@ -6,19 +6,16 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc-arm-none-eabi libnewlib-arm-none-eabi python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
-RUN useradd --create-home --shell /bin/bash vscode \
-    && git init /home/vscode/vial-qmk \
-    && git -C /home/vscode/vial-qmk fetch --depth 1 https://github.com/vial-kb/vial-qmk.git "$VIAL_REVISION" \
-    && git -C /home/vscode/vial-qmk checkout --detach FETCH_HEAD \
-    && git -C /home/vscode/vial-qmk remote add origin https://github.com/vial-kb/vial-qmk.git \
-    && git -C /home/vscode/vial-qmk submodule update --init --depth 1 lib/chibios lib/chibios-contrib lib/pico-sdk lib/printf lib/lufa \
+RUN git init /opt/vial-qmk \
+    && git -C /opt/vial-qmk fetch --depth 1 https://github.com/vial-kb/vial-qmk.git "$VIAL_REVISION" \
+    && git -C /opt/vial-qmk checkout --detach FETCH_HEAD \
+    && git -C /opt/vial-qmk remote add origin https://github.com/vial-kb/vial-qmk.git \
+    && git -C /opt/vial-qmk submodule update --init --depth 1 lib/chibios lib/chibios-contrib lib/pico-sdk lib/printf lib/lufa \
     && python3 -m venv /opt/qmk \
-    && /opt/qmk/bin/pip install --no-cache-dir qmk -r /home/vscode/vial-qmk/requirements.txt \
-    && chown -R vscode:vscode /home/vscode/vial-qmk \
-    && chmod 1777 /home/vscode/vial-qmk \
-    && git config --system --add safe.directory /home/vscode/vial-qmk
+    && /opt/qmk/bin/pip install --no-cache-dir qmk -r /opt/vial-qmk/requirements.txt \
+    && chmod 1777 /opt/vial-qmk \
+    && git config --system --add safe.directory /opt/vial-qmk
 
 ENV PATH="/opt/qmk/bin:${PATH}"
-ENV QMK_HOME=/home/vscode/vial-qmk
-WORKDIR /home/vscode/vial-qmk
-USER vscode
+ENV QMK_HOME=/opt/vial-qmk
+WORKDIR /opt/vial-qmk

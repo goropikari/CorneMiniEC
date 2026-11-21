@@ -65,6 +65,11 @@
             ]
         }
     },
+    "split": {
+        "bootmagic": {
+            "matrix": [3, 1]
+        }
+    },
     "bootmagic": {
         "matrix": [
             0,
